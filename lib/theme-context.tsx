@@ -29,8 +29,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   useEffect(() => {
-    if (!mounted) return
-
     const html = document.documentElement
     if (theme === 'dark') {
       html.classList.add('dark')
@@ -39,14 +37,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
 
     localStorage.setItem('mysoko_theme', theme)
-  }, [theme, mounted])
+  }, [theme])
 
   const toggleTheme = () => {
     setTheme(prev => (prev === 'light' ? 'dark' : 'light'))
-  }
-
-  if (!mounted) {
-    return <>{children}</>
   }
 
   return (

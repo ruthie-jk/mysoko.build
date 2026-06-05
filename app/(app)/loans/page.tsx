@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/lib/auth-context'
 import { Loan } from '@/lib/types'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Heart, Star, MapPin, Clock } from 'lucide-react'
 import { LoanCardSkeleton } from '@/components/ui/skeleton'
@@ -19,7 +19,6 @@ const WishlistCanvas = dynamic(() => import('@/components/features/wishlist-offc
 export default function LoansPage() {
   const { user } = useAuth()
   const router = useRouter()
-  const searchParams = useSearchParams()
   const [loans, setLoans] = useState<Loan[]>([])
   const [loading, setLoading] = useState(true)
   const [wishlist, setWishlist] = useState<string[]>([])
@@ -48,14 +47,7 @@ export default function LoansPage() {
     if (saved) {
       setWishlist(JSON.parse(saved))
     }
-
-    // Check if a specific loan was selected from the carousel
-    const selected = searchParams.get('selected')
-    if (selected) {
-      setSelectedLoanId(selected)
-      setShowModal(true)
-    }
-  }, [searchParams])
+  }, [])
 
   const handleSelectLoan = (loan: Loan) => {
     setSelectedLoanId(loan.id)

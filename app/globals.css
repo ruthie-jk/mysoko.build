@@ -1,51 +1,55 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
 
-@custom-variant dark (&:is(.dark *));
-
-:root {
-  /* MySoko Brand Colors */
-  --background: 0 0% 100%;
-  --foreground: 259 29% 12%;
-  --card: 0 0% 100%;
-  --card-foreground: 259 29% 12%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 259 29% 12%;
-  --primary: 259 84% 41%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 188 100% 50%;
-  --secondary-foreground: 259 29% 12%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 259 13% 45%;
-  --accent: 188 100% 50%;
-  --accent-foreground: 259 29% 12%;
-  --destructive: 0 84% 60%;
-  --border: 0 0% 92%;
-  --input: 0 0% 96%;
-  --ring: 259 84% 41%;
-  --radius: 0.75rem;
+@theme {
+  --font-sans: var(--font-fredoka), system-ui, sans-serif;
+  
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(259 29% 12%);
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(259 29% 12%);
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(259 29% 12%);
+  --color-primary: hsl(259 84% 41%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(188 100% 50%);
+  --color-secondary-foreground: hsl(259 29% 12%);
+  --color-muted: hsl(0 0% 96%);
+  --color-muted-foreground: hsl(259 13% 45%);
+  --color-accent: hsl(188 100% 50%);
+  --color-accent-foreground: hsl(259 29% 12%);
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+  --color-border: hsl(0 0% 92%);
+  --color-input: hsl(0 0% 96%);
+  --color-ring: hsl(259 84% 41%);
+  
+  --radius-sm: 0.45rem;
+  --radius-base: 0.75rem;
+  --radius-md: 0.6rem;
+  --radius-lg: 0.9rem;
 }
 
-.dark {
-  --background: 259 29% 12%;
-  --foreground: 0 0% 98%;
-  --card: 259 35% 20%;
-  --card-foreground: 0 0% 98%;
-  --popover: 259 35% 20%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 259 84% 65%;
-  --primary-foreground: 259 29% 12%;
-  --secondary: 188 100% 50%;
-  --secondary-foreground: 259 29% 12%;
-  --muted: 259 35% 30%;
-  --muted-foreground: 259 13% 65%;
-  --accent: 188 100% 50%;
-  --accent-foreground: 259 29% 12%;
-  --destructive: 0 84% 60%;
-  --border: 259 35% 25%;
-  --input: 259 35% 25%;
-  --ring: 259 84% 65%;
+@dark {
+  --color-background: hsl(259 29% 12%);
+  --color-foreground: hsl(0 0% 98%);
+  --color-card: hsl(259 35% 20%);
+  --color-card-foreground: hsl(0 0% 98%);
+  --color-popover: hsl(259 35% 20%);
+  --color-popover-foreground: hsl(0 0% 98%);
+  --color-primary: hsl(259 84% 65%);
+  --color-primary-foreground: hsl(259 29% 12%);
+  --color-secondary: hsl(188 100% 50%);
+  --color-secondary-foreground: hsl(259 29% 12%);
+  --color-muted: hsl(259 35% 30%);
+  --color-muted-foreground: hsl(259 13% 65%);
+  --color-accent: hsl(188 100% 50%);
+  --color-accent-foreground: hsl(259 29% 12%);
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+  --color-border: hsl(259 35% 25%);
+  --color-input: hsl(259 35% 25%);
+  --color-ring: hsl(259 84% 65%);
 }
 
 @layer base {
@@ -60,17 +64,25 @@
   }
 }
 
-/* Custom animations for MySoko */
 @layer utilities {
   .shimmer-loading {
     background-image: linear-gradient(
       90deg,
-      hsl(var(--muted)) 0%,
-      hsl(var(--background)) 50%,
-      hsl(var(--muted)) 100%
+      rgb(0 0% 96%) 0%,
+      rgb(0 0% 100%) 50%,
+      rgb(0 0% 96%) 100%
     );
     background-size: 200% 100%;
     animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: calc(200% + 200px) 0;
+    }
   }
 
   .smooth-transition {

@@ -1,11 +1,8 @@
 'use client'
 
-import { useTheme } from '@/lib/theme-context'
-import { Moon, Sun } from 'lucide-react'
+import { Moon } from 'lucide-react'
 
 export function TopNav() {
-  const { theme, toggleTheme } = useTheme()
-
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
       <div className="flex items-center justify-between px-4 py-3 sm:px-6">
@@ -17,17 +14,13 @@ export function TopNav() {
           </p>
         </div>
 
-        {/* Theme Switcher */}
+        {/* Theme Switcher Placeholder */}
         <button
-          onClick={toggleTheme}
           className="ml-auto p-2 rounded-lg bg-muted hover:bg-border smooth-transition touch-feedback"
           aria-label="Toggle theme"
+          disabled
         >
-          {theme === 'light' ? (
-            <Moon className="w-5 h-5 text-foreground" />
-          ) : (
-            <Sun className="w-5 h-5 text-foreground" />
-          )}
+          <Moon className="w-5 h-5 text-foreground opacity-50" />
         </button>
       </div>
     </header>
